@@ -1,9 +1,14 @@
 const loadData = () => {
 
     const searchText = document.getElementById('search-text');
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText.value}`)
-        .then(res => res.json())
-        .then(data => displayData(data.data))
+    if (searchText.value === '') {
+        alert("please Insert Phone name")
+    }
+    else {
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText.value}`)
+            .then(res => res.json())
+            .then(data => displayData(data.data))
+    }
 
     const getPhonesSect = document.getElementById('phones');
     getPhonesSect.innerHTML = '';
@@ -33,8 +38,36 @@ const displayData = (data) => {
 
 }
 const phoneDetail = (slug) => {
-    const getPhonesSect = document.getElementById('phones');
     fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
         .then(res => res.json())
-        .then(data => console.log(data.data))
+        .then(data => displayDetails(data.data))
+    const displayDetails = (data) => {
+        const getPhoneDetailId = document.getElementById('phone-detail')
+        const detailDiv = document.createElement('div');
+        const getPhonesSect = document.getElementById('phones');
+        console.log(data)
+        getPhonesSect.innerHTML = '';
+        document.getElementById('search').addEventListener('click', function () {
+            document.getElementById('phone-detail').innerHTML = ''
+        })
+        detailDiv.innerHTML = `
+        <div class="d-flex w-100  gap-5">
+                            <div class="text-center my-3">
+                                <img class="card-img-top img-fluid " src="${data.image}" alt="Card image cap">
+                            </div>
+                            <div class="">
+                                <h5>${data.brand}</h5>
+                                <p><b>Name: </b>${data.name}</p>
+                                <p>Release Date: ${data.releaseDate}</p>
+                                <h1>Main Feature</h1>
+                                <p><b>Chipset:</b> ${data.mainFeatures.chipSet}</p>
+                                <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
+                                <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
+                                <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
+                                
+                            </div>
+        </div>
+        `;
+        getPhoneDetailId.appendChild(detailDiv);
+    }
 }
