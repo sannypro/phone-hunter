@@ -1,3 +1,5 @@
+//  data loading from Api
+
 const loadData = () => {
 
     const searchText = document.getElementById('search-text');
@@ -18,6 +20,13 @@ const loadData = () => {
     searchText.value = "";
 
 }
+
+
+// data showing in website
+
+
+
+
 const displayData = (data) => {
 
     if (data == false) {
@@ -47,6 +56,14 @@ const displayData = (data) => {
     }
 
 }
+
+
+
+
+// detail of every phone
+
+
+
 const phoneDetail = (slug) => {
     fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
         .then(res => res.json())
@@ -57,9 +74,6 @@ const phoneDetail = (slug) => {
         const detailDiv = document.createElement('div');
         getPhoneDetailId.innerHTML = '';
         const getPhonesSect = document.getElementById('phones');
-
-        // getPhonesSect.innerHTML = '';
-
         document.getElementById('search').addEventListener('click', function () {
             document.getElementById('phone-detail').innerHTML = ''
         })
@@ -80,7 +94,13 @@ const phoneDetail = (slug) => {
                                     <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
                                     <h5> Some sensors :</h5>
                                     <p>${data.mainFeatures.sensors}</p>
-                                    
+                                    <h2> Other info :</h2>
+                                    <p><b>Bluetooth:</b> ${data.others.Bluetooth}</p>
+                                    <p><b>GPS: </b>${data.others.GPS}</p>
+                                    <p><b>NFC: </b>${data.others.NFC}</p>
+                                    <p><b>Radio: </b> ${data.others.Radio}</p>
+                                    <p><b>USB: </b>${data.others.USB}</p>
+                                    <p><b>WLAN:</b> ${data.others.WLAN}</p>
                                 </div>
                                 <button onclick='closeDetail()' class="btn btn-primary"> close </button>
             </div>
@@ -88,7 +108,34 @@ const phoneDetail = (slug) => {
             getPhoneDetailId.appendChild(detailDiv);
         }
         else {
-            detailDiv.innerHTML = `
+            if (data.others == undefined) {
+                detailDiv.innerHTML = `
+            <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
+                                <div class="text-center my-3">
+                                    <img class=" w-25 " src="${data.image}" alt="Card image cap">
+                                </div>
+                                <div class="">
+                                    <h5>${data.brand}</h5>
+                                    <p><b>Name: </b>${data.name}</p>
+                                    <p>Release Date: ${data.releaseDate}</p>
+                                    <h1>Main Feature</h1>
+                                    <p><b>Chipset:</b> ${data.mainFeatures.chipSet}</p>
+                                    <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
+                                    <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
+                                    <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
+                                    <h2> Some sensors :</h2>
+                                    <p>${data.mainFeatures.sensors}</p>
+                                    <h2> Other info :</h2>
+                                    <p>NO info Found</p>
+                                    
+                                    
+                                </div>
+                                <button onclick='closeDetail()' class="btn btn-primary"> close </button>
+            </div>
+            `;
+            }
+            else {
+                detailDiv.innerHTML = `
             <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
                                 <div class="text-center my-3">
                                     <img class=" w-25 " src="${data.image}" alt="Card image cap">
@@ -117,7 +164,13 @@ const phoneDetail = (slug) => {
             </div>
             `;
 
+            }
         }
+
+
+        // scroll to the top
+
+
 
         getPhoneDetailId.appendChild(detailDiv);
         document.body.scrollTop = 200; // For Safari
