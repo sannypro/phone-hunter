@@ -37,7 +37,7 @@ const displayData = (data) => {
         const sliceArray = data.slice(0, 20)
         for (const phone of sliceArray) {
             const div = document.createElement('div');
-            div.classList.add('col-lg-4');
+            div.classList.add('col-lg-4', 'col-md-6');
 
             div.innerHTML = `
         
