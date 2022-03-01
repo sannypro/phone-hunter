@@ -80,7 +80,7 @@ const phoneDetail = (slug) => {
             detailDiv.innerHTML = `
             <div id="closeDetail" class="d-flex card flex-column w-75 mx-auto detail-bg gap-5">
                                 <div class="text-center my-3">
-                                    <img class=" w-25 " src="${data.image}" alt="Card image cap">
+                                    <img class=" img-fluid " src="${data.image}" alt="Card image cap">
                                 </div>
                                 <div class="w-75 mx-auto">
                                     <h5>${data.brand}</h5>
@@ -111,7 +111,7 @@ const phoneDetail = (slug) => {
                 detailDiv.innerHTML = `
             <div id="closeDetail" class="d-flex card flex-column w-75 mx-auto detail-bg gap-5">
                                 <div class="text-center my-3">
-                                    <img class=" w-25 " src="${data.image}" alt="Card image cap">
+                                    <img class=" img-fluid " src="${data.image}" alt="Card image cap">
                                 </div>
                                 <div class="w-75 mx-auto">
                                     <h5>${data.brand}</h5>
@@ -137,7 +137,7 @@ const phoneDetail = (slug) => {
                 detailDiv.innerHTML = `
             <div id="closeDetail" class="d-flex card flex-column w-75 mx-auto detail-bg gap-5">
                                 <div class="text-center my-3">
-                                    <img class=" w-25 " src="${data.image}" alt="Card image cap">
+                                    <img class=" img-fluid " src="${data.image}" alt="Card image cap">
                                 </div>
                                 <div class="w-75 mx-auto">
                                     <h5>${data?.brand}</h5>
