@@ -29,7 +29,7 @@ const displayData = (data) => {
         for (const phone of sliceArray) {
             const div = document.createElement('div');
             div.classList.add('col-lg-4');
-            console.log(data)
+
             div.innerHTML = `
         
                         <div class="card  back-ground " style="width: 18rem;">
@@ -53,7 +53,7 @@ const phoneDetail = (slug) => {
         .then(data => displayDetails(data.data))
     const displayDetails = (data) => {
         const getPhoneDetailId = document.getElementById('phone-detail')
-
+        console.log(data)
         const detailDiv = document.createElement('div');
         getPhoneDetailId.innerHTML = '';
         const getPhonesSect = document.getElementById('phones');
@@ -102,8 +102,15 @@ const phoneDetail = (slug) => {
                                     <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
                                     <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
                                     <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
-                                    <h5> Some sensors :</h5>
+                                    <h2> Some sensors :</h2>
                                     <p>${data.mainFeatures.sensors}</p>
+                                    <h2> Other info :</h2>
+                                    <p><b>Bluetooth:</b> ${data.others.Bluetooth}</p>
+                                    <p><b>GPS: </b>${data.others.GPS}</p>
+                                    <p><b>NFC: </b>${data.others.NFC}</p>
+                                    <p><b>Radio: </b> ${data.others.Radio}</p>
+                                    <p><b>USB: </b>${data.others.USB}</p>
+                                    <p><b>WLAN:</b> ${data.others.WLAN}</p>
                                     
                                 </div>
                                 <button onclick='closeDetail()' class="btn btn-primary"> close </button>
