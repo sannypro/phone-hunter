@@ -78,7 +78,7 @@ const phoneDetail = (slug) => {
         })
         if (data.releaseDate == '') {
             detailDiv.innerHTML = `
-            <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
+            <div id="closeDetail" class="d-flex card flex-column w-75 mx-auto detail-bg gap-5">
                                 <div class="text-center my-3">
                                     <img class=" w-25 " src="${data.image}" alt="Card image cap">
                                 </div>
@@ -101,7 +101,7 @@ const phoneDetail = (slug) => {
                                     <p><b>USB: </b>${data.others.USB}</p>
                                     <p><b>WLAN:</b> ${data.others.WLAN}</p>
                                 </div>
-                                <button onclick='closeDetail()' class="btn btn-primary"> close </button>
+                                <button onclick='closeDetail()' class="btn btn-primary w-50 mx-auto"> close </button>
             </div>
             `;
             getPhoneDetailId.appendChild(detailDiv);
@@ -109,7 +109,7 @@ const phoneDetail = (slug) => {
         else {
             if (data.others == undefined) {
                 detailDiv.innerHTML = `
-            <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
+            <div id="closeDetail" class="d-flex card flex-column w-75 mx-auto detail-bg gap-5">
                                 <div class="text-center my-3">
                                     <img class=" w-25 " src="${data.image}" alt="Card image cap">
                                 </div>
@@ -129,17 +129,17 @@ const phoneDetail = (slug) => {
                                     
                                     
                                 </div>
-                                <button onclick='closeDetail()' class="btn btn-primary"> close </button>
+                                <button onclick='closeDetail()' class="btn btn-primary  w-50 mx-auto"> close </button>
             </div>
             `;
             }
             else {
                 detailDiv.innerHTML = `
-            <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
+            <div id="closeDetail" class="d-flex card flex-column w-75 mx-auto detail-bg gap-5">
                                 <div class="text-center my-3">
                                     <img class=" w-25 " src="${data.image}" alt="Card image cap">
                                 </div>
-                                <div class="">
+                                <div class="w-75 mx-auto">
                                     <h5>${data.brand}</h5>
                                     <p><b>Name: </b>${data.name}</p>
                                     <p>Release Date: ${data.releaseDate}</p>
@@ -159,7 +159,7 @@ const phoneDetail = (slug) => {
                                     <p><b>WLAN:</b> ${data.others.WLAN}</p>
                                     
                                 </div>
-                                <button onclick='closeDetail()' class="btn btn-primary"> close </button>
+                                <button onclick='closeDetail()' class="btn btn-primary w-50 mx-auto"> close </button>
             </div>
             `;
 
