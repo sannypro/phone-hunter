@@ -25,7 +25,7 @@ const displayData = (data) => {
     }
     else {
         const getPhonesSect = document.getElementById('phones');
-        const sliceArray = data.slice(1, 21)
+        const sliceArray = data.slice(0, 20)
         for (const phone of sliceArray) {
             const div = document.createElement('div');
             div.classList.add('col-lg-4');
@@ -57,56 +57,61 @@ const phoneDetail = (slug) => {
         const detailDiv = document.createElement('div');
         getPhoneDetailId.innerHTML = '';
         const getPhonesSect = document.getElementById('phones');
-        console.log(data)
+
         // getPhonesSect.innerHTML = '';
 
         document.getElementById('search').addEventListener('click', function () {
             document.getElementById('phone-detail').innerHTML = ''
         })
-        debugger
         if (data.releaseDate == '') {
             detailDiv.innerHTML = `
-        <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
-                            <div class="text-center my-3">
-                                <img class=" w-25 " src="${data.image}" alt="Card image cap">
-                            </div>
-                            <div class="">
-                                <h5>${data.brand}</h5>
-                                <p><b>Name: </b>${data.name}</p>
-                                <p>Release Date: no result found</p>
-                                <h1>Main Feature</h1>
-                                <p><b>Chipset:</b> ${data.mainFeatures.chipSet}</p>
-                                <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
-                                <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
-                                <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
-                                
-                            </div>
-                            <button onclick='closeDetail()' class="btn btn-primary"> close </button>
-        </div>
-        `;
+            <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
+                                <div class="text-center my-3">
+                                    <img class=" w-25 " src="${data.image}" alt="Card image cap">
+                                </div>
+                                <div class="">
+                                    <h5>${data.brand}</h5>
+                                    <p><b>Name: </b>${data.name}</p>
+                                    <p>Release Date: no result found</p>
+                                    <h1>Main Feature</h1>
+                                    <p><b>Chipset:</b> ${data.mainFeatures.chipSet}</p>
+                                    <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
+                                    <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
+                                    <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
+                                    <h5> Some sensors :</h5>
+                                    <p>${data.mainFeatures.sensors}</p>
+                                    
+                                </div>
+                                <button onclick='closeDetail()' class="btn btn-primary"> close </button>
+            </div>
+            `;
             getPhoneDetailId.appendChild(detailDiv);
         }
         else {
             detailDiv.innerHTML = `
-        <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
-                            <div class="text-center my-3">
-                                <img class=" w-25 " src="${data.image}" alt="Card image cap">
-                            </div>
-                            <div class="">
-                                <h5>${data.brand}</h5>
-                                <p><b>Name: </b>${data.name}</p>
-                                <p>Release Date: ${data.releaseDate}</p>
-                                <h1>Main Feature</h1>
-                                <p><b>Chipset:</b> ${data.mainFeatures.chipSet}</p>
-                                <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
-                                <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
-                                <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
-                                
-                            </div>
-                            <button onclick='closeDetail()' class="btn btn-primary"> close </button>
-        </div>
-        `;
+            <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
+                                <div class="text-center my-3">
+                                    <img class=" w-25 " src="${data.image}" alt="Card image cap">
+                                </div>
+                                <div class="">
+                                    <h5>${data.brand}</h5>
+                                    <p><b>Name: </b>${data.name}</p>
+                                    <p>Release Date: ${data.releaseDate}</p>
+                                    <h1>Main Feature</h1>
+                                    <p><b>Chipset:</b> ${data.mainFeatures.chipSet}</p>
+                                    <p ><b>Display Size:</b> ${data.mainFeatures.displaySize}</p>
+                                    <p ><b>Memory:</b> ${data.mainFeatures.memory}</p>
+                                    <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
+                                    <h5> Some sensors :</h5>
+                                    <p>${data.mainFeatures.sensors}</p>
+                                    
+                                </div>
+                                <button onclick='closeDetail()' class="btn btn-primary"> close </button>
+            </div>
+            `;
+
         }
+
         getPhoneDetailId.appendChild(detailDiv);
         document.body.scrollTop = 200; // For Safari
         document.documentElement.scrollTop = 200; // For Chrome, Firefox, IE and Opera
