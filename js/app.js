@@ -70,7 +70,6 @@ const phoneDetail = (slug) => {
         .then(data => displayDetails(data.data))
     const displayDetails = (data) => {
         const getPhoneDetailId = document.getElementById('phone-detail')
-        console.log(data)
         const detailDiv = document.createElement('div');
         getPhoneDetailId.innerHTML = '';
         const getPhonesSect = document.getElementById('phones');
