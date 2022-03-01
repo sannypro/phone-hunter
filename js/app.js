@@ -1,13 +1,16 @@
 const loadData = () => {
 
     const searchText = document.getElementById('search-text');
+    const lowerCase = searchText.value.toLowerCase();
+
     if (searchText.value === '') {
         alert("please Insert Phone name")
     }
     else {
-        fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText.value}`)
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${lowerCase}`)
             .then(res => res.json())
             .then(data => displayData(data.data))
+
     }
 
     const getPhonesSect = document.getElementById('phones');
@@ -16,14 +19,20 @@ const loadData = () => {
 
 }
 const displayData = (data) => {
-    const getPhonesSect = document.getElementById('phones');
-    for (const phone of data) {
-        const div = document.createElement('div');
-        div.classList.add('col-lg-4');
-
-        div.innerHTML = `
+    debugger;
+    if (data == false) {
+        alert('No result Found')
+    }
+    else {
+        const getPhonesSect = document.getElementById('phones');
+        const sliceArray = data.slice(1, 21)
+        for (const phone of sliceArray) {
+            const div = document.createElement('div');
+            div.classList.add('col-lg-4');
+            console.log(data)
+            div.innerHTML = `
         
-                        <div class="card " style="width: 18rem;">
+                        <div class="card  back-ground " style="width: 18rem;">
                             <div class="text-center my-3">
                                 <img class="card-img-top w-75 " src="${phone.image}" alt="Card image cap"></div>
                             <div class="card-body">
@@ -33,7 +42,8 @@ const displayData = (data) => {
                             </div>
                         </div>
         `;
-        getPhonesSect.appendChild(div);
+            getPhonesSect.appendChild(div);
+        }
     }
 
 }
@@ -43,17 +53,20 @@ const phoneDetail = (slug) => {
         .then(data => displayDetails(data.data))
     const displayDetails = (data) => {
         const getPhoneDetailId = document.getElementById('phone-detail')
+
         const detailDiv = document.createElement('div');
+        getPhoneDetailId.innerHTML = '';
         const getPhonesSect = document.getElementById('phones');
         console.log(data)
-        getPhonesSect.innerHTML = '';
+        // getPhonesSect.innerHTML = '';
+
         document.getElementById('search').addEventListener('click', function () {
             document.getElementById('phone-detail').innerHTML = ''
         })
         detailDiv.innerHTML = `
-        <div class="d-flex w-100  gap-5">
+        <div id="closeDetail" class="d-flex flex-column w-100 detail-bg gap-5">
                             <div class="text-center my-3">
-                                <img class="card-img-top img-fluid " src="${data.image}" alt="Card image cap">
+                                <img class=" w-25 " src="${data.image}" alt="Card image cap">
                             </div>
                             <div class="">
                                 <h5>${data.brand}</h5>
@@ -66,8 +79,17 @@ const phoneDetail = (slug) => {
                                 <p ><b>Storage:</b> ${data.mainFeatures.storage}</p>
                                 
                             </div>
+                            <button onclick='closeDetail()' class="btn btn-primary"> close </button>
         </div>
         `;
         getPhoneDetailId.appendChild(detailDiv);
+        document.body.scrollTop = 200; // For Safari
+        document.documentElement.scrollTop = 200; // For Chrome, Firefox, IE and Opera
     }
+}
+const closeDetail = () => {
+    const phonedetail = document.getElementById('phone-detail');
+    phonedetail.innerHTML = '';
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
