@@ -82,7 +82,7 @@ const phoneDetail = (slug) => {
                                 <div class="text-center my-3">
                                     <img class=" w-25 " src="${data.image}" alt="Card image cap">
                                 </div>
-                                <div class="">
+                                <div class="w-75 mx-auto">
                                     <h5>${data.brand}</h5>
                                     <p><b>Name: </b>${data.name}</p>
                                     <p>Release Date: no result found</p>
@@ -113,7 +113,7 @@ const phoneDetail = (slug) => {
                                 <div class="text-center my-3">
                                     <img class=" w-25 " src="${data.image}" alt="Card image cap">
                                 </div>
-                                <div class="">
+                                <div class="w-75 mx-auto">
                                     <h5>${data.brand}</h5>
                                     <p><b>Name: </b>${data.name}</p>
                                     <p>Release Date: ${data.releaseDate}</p>
